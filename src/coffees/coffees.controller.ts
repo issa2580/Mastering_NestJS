@@ -1,10 +1,12 @@
 import {
   Body,
   Controller,
+  Delete,
   Get,
   HttpCode,
   HttpStatus,
   Param,
+  Patch,
   Post,
   Res,
 } from '@nestjs/common';
@@ -27,5 +29,15 @@ export class CoffeesController {
   @HttpCode(HttpStatus.CREATED)
   create(@Body() body) {
     return body;
+  }
+
+  @Patch('favority/:id')
+  update(@Param('id') id: string, @Body() body) {
+    return `this action updates id: ${id} coffees`;
+  }
+
+  @Delete('favority/:id')
+  remove(@Param('id') id: string) {
+    return `this action removes id: ${id} coffees`;
   }
 }
