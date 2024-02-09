@@ -4,6 +4,8 @@ import {
   Injectable,
   NotFoundException,
 } from '@nestjs/common';
+import { CreateCoffeeDto } from './dto/create-coffee.dto';
+import { UpdateCoffeeDto } from './dto/update-coffee.dto';
 import { Coffee } from './entities/coffee.entity';
 
 @Injectable()
@@ -41,9 +43,9 @@ export class CoffeesService {
     },
   ];
 
-  //   create(createCatDto: CreateCatDto) {
-  //     return this.coffees.push(createCatDto);
-  //   }
+  create(createCoffeeDto: CreateCoffeeDto) {
+    return this.coffees.push(createCoffeeDto);
+  }
 
   findAll() {
     return this.coffees;
@@ -59,12 +61,12 @@ export class CoffeesService {
     return coffee;
   }
 
-  //   update(id: number, updateCatDto: UpdateCatDto) {
-  //     const existingCoffee = this.findOne(id);
-  //     if (existingCoffee) {
-  //       return Object.assign(existingCoffee, updateCatDto);
-  //     }
-  //   }
+  update(id: number, updateCoffeeDto: UpdateCoffeeDto) {
+    const existingCoffee = this.findOne(id);
+    if (existingCoffee) {
+      return Object.assign(existingCoffee, updateCoffeeDto);
+    }
+  }
 
   remove(id: number) {
     const coffeeIndex = this.coffees.findIndex((coffee) => coffee.id === +id);
