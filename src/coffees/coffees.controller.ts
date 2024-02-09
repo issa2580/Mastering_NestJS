@@ -8,16 +8,20 @@ import {
   Param,
   Patch,
   Post,
+  Query,
   Res,
 } from '@nestjs/common';
 
 @Controller('coffees')
 export class CoffeesController {
   @Get('favority')
-  findAll(@Res() response) {
+  findAll(@Res() response, @Query() paginationQuery) {
+    const { limit, offset } = paginationQuery;
     return response
       .status(201)
-      .send('this request is sent to the coffees controller');
+      .send(
+        `this request is sent to the coffees controller with limit: ${limit} and offset: ${offset}`,
+      );
   }
 
   @Get('favority/:id')
